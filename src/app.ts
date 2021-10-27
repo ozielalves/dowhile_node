@@ -2,12 +2,13 @@ import "dotenv/config";
 import express from "express";
 import http from "http";
 import cors from "cors";
+
 import { Server } from "socket.io";
 
 import { router } from "./routes";
 
 const app = express();
-app.use(cors);
+app.use(cors());
 
 const serverHttp = http.createServer(app);
 
@@ -31,7 +32,7 @@ app.get("/github", (request, response) => {
   );
 });
 
-app.get("sigin/callback", (request, response) => {
+app.get("/signin/callback", (request, response) => {
   const { code } = request.query;
 
   return response.json(code);
